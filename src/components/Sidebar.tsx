@@ -11,7 +11,7 @@ const navItems = [
 
 const Sidebar: React.FC = () => {
   return (
-    <aside className="bg-black text-[#fff] h-full  rounded-[2.5rem] font-mont pl-[50px] w-[350px] py-[60px] relative text-lg font-normal">
+    <aside className="bg-black text-[#fff] h-full  rounded-[2.5rem] font-mont px-[50px] w-[300px] py-[60px] relative text-lg font-normal hidden md:block xs">
       <h1 className="text-4xl font-bold ">Board.</h1>
 
       <nav className="mt-[60px] ">
