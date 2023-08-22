@@ -1,5 +1,6 @@
 "use client";
-import React, { useState } from "react";
+
+import React, { useState, useEffect } from "react";
 import {
   LineChart,
   Line,
@@ -8,52 +9,30 @@ import {
   CartesianGrid,
   ResponsiveContainer,
 } from "recharts";
-const data = [
+const datax = [
   {
-    name: "Page A",
-    uv: 4000,
-    pv: 2400,
-    amt: 2400,
+    name: "Week 1",
+    uv: 150,
+    pv: 300,
   },
   {
-    name: "Page B",
-    uv: 3000,
-    pv: 1398,
-    amt: 2210,
+    name: "Week 2",
+    uv: 300,
+    pv: 170,
   },
   {
-    name: "Page C",
-    uv: 2000,
-    pv: 9800,
-    amt: 2290,
+    name: "Week 3",
+    uv: 150,
+    pv: 300,
   },
   {
-    name: "Page D",
-    uv: 2780,
-    pv: 3908,
-    amt: 2000,
-  },
-  {
-    name: "Page E",
-    uv: 1890,
-    pv: 4800,
-    amt: 2181,
-  },
-  {
-    name: "Page F",
-    uv: 2390,
-    pv: 3800,
-    amt: 2500,
-  },
-  {
-    name: "Week",
-    uv: 0,
-    pv: 0,
-    amt: 0,
+    name: "Week 4",
+    uv: 300,
+    pv: 170,
   },
 ];
 
-const Chart = () => {
+const Chart = ({ data }: any) => {
   return (
     <ResponsiveContainer width="100%">
       <LineChart
@@ -65,17 +44,26 @@ const Chart = () => {
         }}
       >
         <CartesianGrid horizontal={true} vertical={false} />
-        <XAxis dataKey="name" axisLine={false} tickLine={false} />
+        <XAxis
+          dataKey="week"
+          axisLine={false}
+          tickLine={false}
+          tickFormatter={(value) => `Week-${value}`}
+        />
         <YAxis axisLine={false} />
 
         <Line
           type="monotone"
-          dataKey="pv"
-          stroke="#8884d8"
-          activeDot={{ r: 8 }}
+          dataKey="userVisits"
+          stroke="#E9A0A0"
           dot={false}
         />
-        <Line type="monotone" dataKey="uv" stroke="#82ca9d" dot={false} />
+        <Line
+          type="monotone"
+          dataKey="guestVisits"
+          stroke="#9BDD7C"
+          dot={false}
+        />
       </LineChart>
     </ResponsiveContainer>
   );

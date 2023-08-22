@@ -25,7 +25,7 @@ const Menu = () => {
       {open && (
         <div className="bg-black text-white absolute right-0 w-full top-0 h-[60vh] flex flex-col gap-8 py-10  pl-10  z-10">
           <div
-            className="absolute right-2 top-3"
+            className="absolute right-2 top-3 cursor-pointer"
             onClick={() => setOpen(false)}
           >
             <AiOutlineCloseCircle size={30} />
