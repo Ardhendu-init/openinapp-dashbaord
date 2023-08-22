@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React from "react";
 import {
   LineChart,
   Line,
@@ -8,33 +8,20 @@ import {
   YAxis,
   CartesianGrid,
   ResponsiveContainer,
+  Tooltip,
 } from "recharts";
-const datax = [
-  {
-    name: "Week 1",
-    uv: 150,
-    pv: 300,
-  },
-  {
-    name: "Week 2",
-    uv: 300,
-    pv: 170,
-  },
-  {
-    name: "Week 3",
-    uv: 150,
-    pv: 300,
-  },
-  {
-    name: "Week 4",
-    uv: 300,
-    pv: 170,
-  },
-];
 
-const Chart = ({ data }: any) => {
+type ChartProps = {
+  data: {
+    week: number;
+    userVisits: number;
+    guestVisits: number;
+  }[];
+};
+
+const Chart: React.FC<ChartProps> = ({ data }) => {
   return (
-    <ResponsiveContainer width="100%">
+    <ResponsiveContainer width="100%" height={250}>
       <LineChart
         width={500}
         height={200}
@@ -51,7 +38,7 @@ const Chart = ({ data }: any) => {
           tickFormatter={(value) => `Week-${value}`}
         />
         <YAxis axisLine={false} />
-
+        <Tooltip />
         <Line
           type="monotone"
           dataKey="userVisits"

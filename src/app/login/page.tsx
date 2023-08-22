@@ -1,8 +1,19 @@
+"use client";
+import { signIn, useSession } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import React from "react";
 
-const page = () => {
+const LoginPage: React.FC = () => {
+  const { status } = useSession();
+  const router = useRouter();
+  if (status === "loading") {
+    return <p>Loading...</p>;
+  }
+  if (status === "authenticated") {
+    router.push("/");
+  }
   return (
     <div className="flex w-full h-[100vh] font-mont">
       <div className="bg-black md:flex justify-center items-center w-[40%] hidden ">
@@ -17,7 +28,10 @@ const page = () => {
             Sign in to your account
           </p>
           <div className="mt-8 flex sm:flex-row flex-col text-xs text-[#858585] gap-6     ">
-            <div className="flex px-5 py-2 rounded-xl bg-white items-center gap-3 cursor-pointer ">
+            <div
+              className="flex px-5 py-2 rounded-xl bg-white items-center gap-3 cursor-pointer "
+              onClick={() => signIn("google")}
+            >
               <Image
                 src="/google-icon.svg"
                 alt="Google-Icon"
@@ -89,4 +103,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default LoginPage;

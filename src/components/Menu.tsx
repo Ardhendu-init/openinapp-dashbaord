@@ -1,11 +1,11 @@
 "use client";
-
-import React, { useState } from "react";
+import React, { useState, MouseEvent } from "react";
 import Image from "next/image";
-import Link from "next/link";
 import { HiMenuAlt1 } from "react-icons/hi";
 import { AiOutlineCloseCircle } from "react-icons/ai";
-const navItems = [
+import { NavItem } from "@/types";
+
+const navItems: NavItem[] = [
   { title: "Dashboard", iconLoc: "/dashboard_icon.svg" },
   { title: "Transactions", iconLoc: "/transaction_icon.svg" },
   { title: "Schedule", iconLoc: "/schedule_icon.svg" },
@@ -13,20 +13,32 @@ const navItems = [
   { title: "Setting", iconLoc: "/setting_icon.svg" },
 ];
 
-const Menu = () => {
+const Menu: React.FC = () => {
   const [open, setOpen] = useState(false);
+
+  const handleClick = () => {
+    setOpen(!open);
+  };
+
+  const handleClose = (event: MouseEvent) => {
+    event.stopPropagation();
+    setOpen(false);
+  };
 
   return (
     <div>
-      <button onClick={() => setOpen(true)}>
+      <button onClick={handleClick}>
         <HiMenuAlt1 size={25} />
       </button>
 
       {open && (
-        <div className="bg-black text-white absolute right-0 w-full top-0 h-[60vh] flex flex-col gap-8 py-10  pl-10  z-10">
+        <div
+          className="bg-black text-white absolute right-0 w-full top-0 h-[60vh] flex flex-col gap-8 py-10  pl-10  z-10"
+          onClick={handleClose}
+        >
           <div
             className="absolute right-2 top-3 cursor-pointer"
-            onClick={() => setOpen(false)}
+            onClick={handleClose}
           >
             <AiOutlineCloseCircle size={30} />
           </div>
@@ -35,7 +47,7 @@ const Menu = () => {
               <li
                 key={index}
                 className="hover:font-bold  pb-5 cursor-pointer flex items-center"
-                onClick={() => setOpen(false)}
+                onClick={handleClose}
               >
                 <Image
                   src={item.iconLoc}

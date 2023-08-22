@@ -1,8 +1,7 @@
+import { ScheduleItem } from "@/types";
 import React from "react";
-import Select from "./Select";
-import PieChartComponent from "./PieChartComponent";
 
-const scheduleItems = [
+const scheduleItems: ScheduleItem[] = [
   {
     id: 1,
     title: "Meeting with suppliers from Kuta Bali",
@@ -19,7 +18,7 @@ const scheduleItems = [
   },
 ];
 
-const ScheduleCard = () => {
+const ScheduleCard: React.FC = () => {
   return (
     <div className="flex flex-col px-10 py-8 bg-white rounded-xl w-full lg:w-1/2 font-mont space-y-3 ">
       <div className="flex justify-between ">

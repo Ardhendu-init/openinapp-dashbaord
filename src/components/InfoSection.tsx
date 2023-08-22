@@ -1,7 +1,8 @@
 import React from "react";
 import Image from "next/image";
+import { InfoItem } from "@/types";
 
-const infoItems = [
+const infoItems: InfoItem[] = [
   {
     id: 1,
     iconLocation: "/revenue_icon.svg",
@@ -32,7 +33,7 @@ const infoItems = [
   },
 ];
 
-const InfoSection = () => {
+const InfoSection: React.FC = () => {
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
       {infoItems.map((item) => (
